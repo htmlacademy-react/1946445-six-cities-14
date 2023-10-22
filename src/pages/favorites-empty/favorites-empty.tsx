@@ -5,9 +5,9 @@ function FavoritesEmpty(): JSX.Element {
   return (
     <body>
       <div className="page page--favorites-empty">
-      <Helmet>
-        <title>6 Cities. Favorites</title>
-      </Helmet>
+        <Helmet>
+          <title>6 Cities. Favorites</title>
+        </Helmet>
         <header className="header">
           <div className="container">
             <div className="header__wrapper">
