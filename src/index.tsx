@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
-import { CARDS_COUNT } from './utils';
+import { CARDS_COUNT } from './consts';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -9,6 +9,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App offersCount={CARDS_COUNT} />
+    <App offersCount={CARDS_COUNT}/>
   </React.StrictMode>
 );
