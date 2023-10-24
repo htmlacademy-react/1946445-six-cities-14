@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import Logo from '../../components/logo/logo';
 
-function Favorites(): JSX.Element {
+function Favorites() {
   return (
     <div className="page">
       <Helmet>

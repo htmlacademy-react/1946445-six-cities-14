@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import Logo from '../../components/logo/logo';
 
-function FavoritesEmpty(): JSX.Element {
+function FavoritesEmpty() {
   return (
     <body>
       <div className="page page--favorites-empty">

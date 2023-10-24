@@ -7,7 +7,7 @@ type MainProps = {
   offersCount: number;
 };
 
-function MainPage({ offersCount }: MainProps): JSX.Element {
+function MainPage({ offersCount }: MainProps) {
   return (
     <div className="page page--gray page--main">
       <Helmet>

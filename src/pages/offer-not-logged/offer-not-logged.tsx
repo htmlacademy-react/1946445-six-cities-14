@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import Logo from '../../components/logo/logo';
 
-function OfferNotLogged(): JSX.Element {
+function OfferNotLogged() {
   return (
     <div className="page">
       <Helmet>

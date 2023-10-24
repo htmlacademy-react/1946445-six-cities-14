@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import Locations from '../../components/locations/locations';
 import Logo from '../../components/logo/logo';
 
-function MainEmpty(): JSX.Element {
+function MainEmpty() {
   return (
     <div className="page page--gray page--main">
       <Helmet>
