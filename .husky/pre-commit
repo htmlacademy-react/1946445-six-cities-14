@@ -5,5 +5,5 @@
 
 # npm exec tsc --noEmit
 
-# npm run prettier:format
-# npm run build
+npm run prettier:format
+npm run build
