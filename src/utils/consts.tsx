@@ -1,5 +1,3 @@
-const CARDS_COUNT: number = 15;
-
 const cityLocations = [
   'Paris',
   'Cologne',
@@ -27,7 +25,6 @@ enum AuthorizationStatus {
 }
 
 export {
-  CARDS_COUNT,
   AppRoute,
   AuthorizationStatus,
   cityLocations,
