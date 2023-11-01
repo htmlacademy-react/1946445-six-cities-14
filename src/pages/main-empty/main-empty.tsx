@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import Locations from '../../components/locations/locations';
+import { Locations } from '../../components/locations/locations';
 import Logo from '../../components/logo/logo';
 
 function MainEmpty() {

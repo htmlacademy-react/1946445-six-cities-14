@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
-* Студент: [Кристина Медведева](https://up.htmlacademy.ru/react/14/user/1946445).
-* Наставник: [Роман Усков] (https://htmlacademy.ru/profile/id1019285).
+- Студент: [Кристина Медведева](https://up.htmlacademy.ru/react/14/user/1946445).
+- Наставник: [Роман Усков] (https://htmlacademy.ru/profile/id1019285).
 
 ---
 

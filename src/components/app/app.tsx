@@ -1,29 +1,45 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { AppRoute, AuthorizationStatus } from '../../consts';
-import {MainPage, Favorites, Offer, Login, NotFound} from '../../pages/index';
+import { AppRoute, AuthorizationStatus } from '../../utils/consts';
+import { MainPage, Favorites, Offer, Login, NotFound } from '../../pages/index';
 import PrivateRoute from '../private-route/private-route';
+import { Offers } from '../../types/offers';
+import { Reviews } from '../../types/reviews';
 
 type AppProps = {
-  offersCount: number;
+  offers: Offers[];
+  reviews: Reviews[];
 };
 
-function App({ offersCount }: AppProps) {
+function App({ offers, reviews }: AppProps) {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
+          <Route path={AppRoute.Main} element={<MainPage offers={offers} />} />
           <Route
-            path={AppRoute.Main}
-            element={<MainPage offersCount={offersCount} />}
+            path={AppRoute.Login}
+            element={
+              <PrivateRoute
+                authorizationStatus={AuthorizationStatus.Auth}
+                redirectTo={AppRoute.Main}
+              >
+                <Login />
+              </PrivateRoute>
+            }
           />
-          <Route path={AppRoute.Login} element={<Login />} />
-          <Route path={AppRoute.Offer} element={<Offer />} />
+          <Route
+            path={`${AppRoute.Offer}/:offerId`}
+            element={<Offer offers={offers} reviews={reviews} />}
+          />
           <Route
             path={AppRoute.Favorites}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-                <Favorites />
+              <PrivateRoute
+                authorizationStatus={AuthorizationStatus.NoAuth}
+                redirectTo={AppRoute.Login}
+              >
+                <Favorites offers={offers} />
               </PrivateRoute>
             }
           />
