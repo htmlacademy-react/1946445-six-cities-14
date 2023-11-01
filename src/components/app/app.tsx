@@ -8,18 +8,17 @@ import { Reviews } from '../../types/reviews';
 
 type AppProps = {
   offers: Offers[];
-  offersCount: number;
   reviews: Reviews[];
 };
 
-function App({ offers, reviews, offersCount }: AppProps) {
+function App({ offers, reviews}: AppProps) {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage offers={offers} offersCount={offersCount} />}
+            element={<MainPage offers={offers} />}
           />
           <Route
             path={AppRoute.Login}

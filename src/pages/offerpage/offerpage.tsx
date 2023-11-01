@@ -5,7 +5,7 @@ import Logo from '../../components/logo/logo';
 import { Offers } from '../../types/offers';
 import { Reviews } from '../../types/reviews';
 import { Card } from '../../components/card/card';
-import NotFound from '../Not-Found/Not-Found';
+import NotFound from '../not-found/not-found';
 import { Review } from '../../components/review/review';
 import { FormReview } from '../../components/form-review/form-review';
 
