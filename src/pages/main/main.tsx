@@ -6,9 +6,10 @@ import { Offers } from '../../types/offers';
 
 type MainProps = {
   offers: Offers[];
+  offersCount: number;
 };
 
-function MainPage({ offers }: MainProps) {
+function MainPage({ offers, offersCount }: MainProps) {
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -49,7 +50,7 @@ function MainPage({ offers }: MainProps) {
         <Locations />
         <div className="cities">
           <div className="cities__places-container container">
-            <OffersList offers={offers} />
+            <OffersList offers={offers} offersCount={offersCount} />
             <div className="cities__right-section">
               <section className="cities__map map"></section>
             </div>
