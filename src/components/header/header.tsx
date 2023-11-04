@@ -3,7 +3,7 @@ import { isUserAuthorized, AppRoute } from '../../utils/consts';
 import Logo from '../../components/logo/logo';
 
 type HeaderProps = {
-  notAuthorized: boolean;
+  notAuthorized?: boolean;
 };
 
 function Header({ notAuthorized }: HeaderProps) {
