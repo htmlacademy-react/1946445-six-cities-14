@@ -24,10 +24,15 @@ enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+const checkAuthorizationStatus = (status: AuthorizationStatus): boolean => status === AuthorizationStatus.Auth;
+
+const isUserAuthorized = checkAuthorizationStatus(AuthorizationStatus.Auth);
+
 export {
   AppRoute,
   AuthorizationStatus,
   cityLocations,
   MIN_REVIEW_LENGTH,
   MAX_REVIEW_LENGTH,
+  isUserAuthorized
 };

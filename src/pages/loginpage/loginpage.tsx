@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
-import Logo from '../../components/logo/logo';
 import { FormLogin } from '../../components/form-login/form-login';
+import {Header} from '../../components/header/header';
 
 function Login() {
   return (
@@ -8,16 +8,7 @@ function Login() {
       <Helmet>
         <title>6 Cities. Login</title>
       </Helmet>
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <Logo />
-            </div>
-          </div>
-        </div>
-      </header>
-
+      <Header notAuthorized />
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">
