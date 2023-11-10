@@ -26,7 +26,7 @@ function Favorites({ offers }: FavoritesProps) {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-            {Array.from(favoriteCity).map((city) => (
+              {Array.from(favoriteCity).map((city) => (
                 <li key={city} className="favorites__locations-items">
                   <div className="favorites__locations locations locations--current">
                     <div className="locations__item">
