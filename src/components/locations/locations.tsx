@@ -19,7 +19,7 @@ function Locations({activeCity, onCityClick}: LocationsProps) {
                 className={`${
                   activeCity === city ? 'tabs__item--active' : ''
                 } locations__item-link tabs__item`}
-                onCityClick={() => onCityClick(city)}
+                onClick={() => onCityClick(city)}
               >
                 <span>{city}</span>
               </Link>

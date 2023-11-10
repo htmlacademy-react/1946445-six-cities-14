@@ -5,7 +5,7 @@ import { CardPageTypes } from '../../types/pagetypes';
 type OffersListsProps = {
   offers: Offers[];
   cardPageType: CardPageTypes;
-  onCardHover?: (offer: Offers['id'] | null) => void;
+  onCardHover?: (offer: Offers | null) => void;
 };
 
 function OffersList({ offers, onCardHover, cardPageType }: OffersListsProps) {
