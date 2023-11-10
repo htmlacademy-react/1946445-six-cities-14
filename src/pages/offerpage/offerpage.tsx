@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import { useMemo } from 'react';
-import { Offers } from '../../types/offers';
+import { Offers, OfferCity } from '../../types/offers';
 import { Reviews } from '../../types/reviews';
 import NotFound from '../not-found/not-found';
 import { Header } from '../../components/header/header';
@@ -18,7 +18,7 @@ type OfferProps = {
 function Offer({ offers, reviews }: OfferProps) {
   const { offerId } = useParams();
   const currentOffer = offers.find((item) => item.id === Number(offerId));
-  const activeCity = currentOffer?.city;
+  const activeCity = currentOffer?.city || {} as OfferCity;
   const nearOffers = useMemo<Offers[]>(() => {
     if (!currentOffer) {
       return [];
@@ -115,7 +115,7 @@ function Offer({ offers, reviews }: OfferProps) {
                 </ul>
               </div>
               <div className="offer__host">
-                <h2 className="offer__host-title">Meet the host {title}</h2>
+                <h2 className="offer__host-title">Meet the host {host.name}</h2>
                 <div className="offer__host-user user">
                   <div
                     className={`offer__avatar-wrapper user__avatar-wrapper ${
