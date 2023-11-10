@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { FormLogin } from '../../components/form-login/form-login';
-import {Header} from '../../components/header/header';
+import { Header } from '../../components/header/header';
 
 function Login() {
   return (

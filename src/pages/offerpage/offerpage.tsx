@@ -3,11 +3,12 @@ import { useParams } from 'react-router-dom';
 import { useMemo } from 'react';
 import { Offers } from '../../types/offers';
 import { Reviews } from '../../types/reviews';
-import { Card } from '../../components/card/card';
 import NotFound from '../not-found/not-found';
-import { Review } from '../../components/review/review';
-import { FormReview } from '../../components/form-review/form-review';
-import {Header} from '../../components/header/header';
+import { Header } from '../../components/header/header';
+import { setRatingWidth } from '../../utils/utils';
+import Map from '../../components/map/map';
+import { ReviewsList } from '../../components/reviews-list/reviews-list';
+import { OffersList } from '../../components/offers-list/offers-list';
 
 type OfferProps = {
   offers: Offers[];
@@ -17,6 +18,7 @@ type OfferProps = {
 function Offer({ offers, reviews }: OfferProps) {
   const { offerId } = useParams();
   const currentOffer = offers.find((item) => item.id === Number(offerId));
+  const activeCity = currentOffer?.city;
   const nearOffers = useMemo<Offers[]>(() => {
     if (!currentOffer) {
       return [];
@@ -72,10 +74,7 @@ function Offer({ offers, reviews }: OfferProps) {
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">{title}</h1>
                 <button className="offer-card__bookmark-button button">
-                  <svg
-                    className="offer__bookmark-icon"
-                    style={{ width: '31px', height: '33px' }}
-                  >
+                  <svg className="offer__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark"></use>
                   </svg>
                   <span className="visually-hidden">To bookmarks</span>
@@ -83,7 +82,7 @@ function Offer({ offers, reviews }: OfferProps) {
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{ width: '80%' }}></span>
+                  <span style={{ width: setRatingWidth(rating) }}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="offer__rating-value rating__value">
@@ -116,7 +115,7 @@ function Offer({ offers, reviews }: OfferProps) {
                 </ul>
               </div>
               <div className="offer__host">
-                <h2 className="offer__host-title">Meet the host</h2>
+                <h2 className="offer__host-title">Meet the host {title}</h2>
                 <div className="offer__host-user user">
                   <div
                     className={`offer__avatar-wrapper user__avatar-wrapper ${
@@ -140,36 +139,21 @@ function Offer({ offers, reviews }: OfferProps) {
                   <p className="offer__text">{description}</p>
                 </div>
               </div>
-              <section className="offer__reviews reviews">
-                <h2 className="reviews__title">
-                  Reviews &middot;{' '}
-                  <span className="reviews__amount">{reviews.length}</span>
-                </h2>
-                <ul className="reviews__list">
-                  {reviews.map((review) => (
-                    <Review key={review.id} review={review} />
-                  ))}
-                </ul>
-                <FormReview />
-              </section>
+              <ReviewsList reviews={reviews} />
             </div>
           </div>
-          <section className="offer__map map"></section>
+          <Map
+            cardPageType="near-places"
+            city={activeCity}
+            offers={nearOffers}
+          />
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">
               Other places in the neighbourhood
             </h2>
-            <div className="near-places__list places__list">
-              {nearOffers.map((nearOffer) => (
-                <Card
-                  cardPageType="offerPage"
-                  offer={nearOffer}
-                  key={nearOffer.id}
-                />
-              ))}
-            </div>
+            <OffersList cardPageType="near-places" offers={nearOffers} />
           </section>
         </div>
       </main>

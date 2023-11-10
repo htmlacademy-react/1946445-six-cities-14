@@ -1,4 +1,5 @@
 import { Reviews } from '../../types/reviews';
+import { setRatingWidth, formatDate } from '../../utils/utils';
 
 type ReviewProps = {
   review: Reviews;
@@ -11,7 +12,7 @@ function Review({ review }: ReviewProps): JSX.Element {
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
           <img
             className="reviews__avatar user__avatar"
-            src={`${review.user.avatarUrl}`}
+            src={review.user.avatarUrl}
             width="54"
             height="54"
             alt="Reviews avatar"
@@ -22,13 +23,13 @@ function Review({ review }: ReviewProps): JSX.Element {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{ width: '80%' }}></span>
+            <span style={{ width: setRatingWidth(review.rating) }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <p className="reviews__text">{review.comment}</p>
-        <time className="reviews__time" dateTime="2019-04-24">
-          April 2019
+        <time className="reviews__time" dateTime={review.date}>
+          {formatDate(review.date)}
         </time>
       </div>
     </li>

@@ -1,31 +1,24 @@
 import { Link } from 'react-router-dom';
 import { Offers } from '../../types/offers';
 import { AppRoute } from '../../utils/consts';
+import { setRatingWidth } from '../../utils/utils';
+import { CardPageTypes } from '../../types/pagetypes';
+
+type ImageSize = 'small' | 'large';
+
+const imgSize: Record<ImageSize, { width: string; height: string }> = {
+  small: { width: '150', height: '110' },
+  large: { width: '260', height: '200' },
+};
 
 type CardProps = {
   offer: Offers;
-  cardPageType: 'mainPage' | 'favoritePage' | 'offerPage';
-  onCardHover?: (id: number | null) => void;
+  cardPageType: CardPageTypes;
+  onCardHover?: (offer: Offers['id'] | null) => void;
+  size?: ImageSize;
 };
 
-function Card({ offer, cardPageType, onCardHover }: CardProps) {
-  const pageSettings = {
-    mainPage: {
-      className: 'cities',
-      width: '260',
-      height: '200',
-    },
-    favoritePage: {
-      className: 'favorites',
-      width: '150',
-      height: '110',
-    },
-    offerPage: {
-      className: 'near-places',
-      width: '260',
-      height: '200',
-    },
-  };
+function Card({ offer, cardPageType, onCardHover, size = 'large' }: CardProps) {
   function handleMouseEnter() {
     onCardHover?.(offer.id);
   }
@@ -34,9 +27,9 @@ function Card({ offer, cardPageType, onCardHover }: CardProps) {
   }
   return (
     <article
-      className={`${pageSettings[cardPageType].className}__card place-card`}
-      onMouseEnter={() => handleMouseEnter}
-      onMouseLeave={() => handleMouseLeave}
+      className={`${cardPageType}__card place-card`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {offer.isPremium && (
         <div className="place-card__mark">
@@ -44,21 +37,20 @@ function Card({ offer, cardPageType, onCardHover }: CardProps) {
         </div>
       )}
       <div
-        className={`${pageSettings[cardPageType].className}__image-wrapper place-card__image-wrapper`}
+        className={`${cardPageType}__image-wrapper place-card__image-wrapper`}
       >
         <Link to={`${AppRoute.Offer}/${offer.id}`}>
           <img
             className="place-card__image"
             src={offer.previewImage}
-            width={`${pageSettings[cardPageType].width}`}
-            height={`${pageSettings[cardPageType].height}`}
+            {...imgSize[size]}
             alt={offer.title}
           />
         </Link>
       </div>
       <div
         className={`${
-          cardPageType === 'favoritePage' ? 'favorites__card-info' : ''
+          cardPageType === 'favorites' ? 'favorites__card-info' : ''
         } place-card__info`}
       >
         <div className="place-card__price-wrapper">
@@ -72,10 +64,7 @@ function Card({ offer, cardPageType, onCardHover }: CardProps) {
             } button`}
             type="button"
           >
-            <svg
-              className="place-card__bookmark-icon"
-              style={{ width: '18px', height: '19px' }}
-            >
+            <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
             <span className="visually-hidden">To bookmarks</span>
@@ -83,7 +72,7 @@ function Card({ offer, cardPageType, onCardHover }: CardProps) {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: '80%' }}></span>
+            <span style={{ width: setRatingWidth(offer.rating) }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

@@ -11,15 +11,12 @@ type AppProps = {
   reviews: Reviews[];
 };
 
-function App({ offers, reviews}: AppProps) {
+function App({ offers, reviews }: AppProps) {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route
-            path={AppRoute.Main}
-            element={<MainPage offers={offers} />}
-          />
+          <Route path={AppRoute.Main} element={<MainPage offers={offers} />} />
           <Route
             path={AppRoute.Login}
             element={

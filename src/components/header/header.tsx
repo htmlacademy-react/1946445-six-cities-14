@@ -59,4 +59,4 @@ function Header({ notAuthorized }: HeaderProps) {
   );
 }
 
-export {Header};
+export { Header };

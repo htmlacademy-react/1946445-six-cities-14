@@ -1,25 +1,29 @@
 import { Offers } from '../../types/offers';
 import { Card } from '../card/card';
-import { Form } from '../form-sorting/form-sorting';
+import { CardPageTypes } from '../../types/pagetypes';
 
 type OffersListsProps = {
   offers: Offers[];
+  cardPageType: CardPageTypes;
+  onCardHover?: (offer: Offers['id'] | null) => void;
 };
 
-function OffersList({ offers }: OffersListsProps) {
+function OffersList({ offers, onCardHover, cardPageType }: OffersListsProps) {
   return (
-    <section className="cities__places places">
-      <h2 className="visually-hidden">Places</h2>
-      <b className="places__found">
-        {offers.length} places to stay in Amsterdam
-      </b>
-      <Form />
-      <div className="cities__places-list places__list tabs__content">
-        {offers.map((offer) => (
-          <Card cardPageType="mainPage" offer={offer} key={offer.id} />
-        ))}
-      </div>
-    </section>
+    <div
+      className={`${cardPageType}__places-list ${
+        cardPageType === 'cities' ? 'tabs__content' : ''
+      } places__list`}
+    >
+      {offers.map((offer) => (
+        <Card
+          cardPageType={cardPageType}
+          offer={offer}
+          key={offer.id}
+          onCardHover={onCardHover}
+        />
+      ))}
+    </div>
   );
 }
 
