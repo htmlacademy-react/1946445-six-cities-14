@@ -8,7 +8,7 @@ import 'leaflet/dist/leaflet.css';
 type MapProps = {
   city: OfferCity;
   offers: Offers[];
-  selectedOffer: Offers | undefined;
+  selectedOffer?: Offers | null;
   cardPageType: string;
 };
 
@@ -41,7 +41,7 @@ function Map(props: MapProps): JSX.Element {
 
         marker
           .setIcon(
-            selectedOffer !== undefined && offer.id === selectedOffer.id
+            selectedOffer && offer.id === selectedOffer.id
               ? currentCustomIcon
               : defaultCustomIcon
           )

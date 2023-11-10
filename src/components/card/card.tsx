@@ -14,13 +14,13 @@ const imgSize: Record<ImageSize, { width: string; height: string }> = {
 type CardProps = {
   offer: Offers;
   cardPageType: CardPageTypes;
-  onCardHover?: (offer: Offers['id'] | null) => void;
+  onCardHover?: (offer: Offers | null) => void;
   size?: ImageSize;
 };
 
 function Card({ offer, cardPageType, onCardHover, size = 'large' }: CardProps) {
   function handleMouseEnter() {
-    onCardHover?.(offer.id);
+    onCardHover?.(offer);
   }
   function handleMouseLeave() {
     onCardHover?.(null);
