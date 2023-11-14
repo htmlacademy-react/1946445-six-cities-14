@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
 import { Offers } from '../../types/offers';
 import { AppRoute } from '../../utils/consts';
-import { setRatingWidth } from '../../utils/utils';
+import { getRatingWidth } from '../../utils/utils';
 import { CardPageTypes } from '../../types/pagetypes';
 
 type ImageSize = 'small' | 'large';
 
-const imgSize: Record<ImageSize, { width: string; height: string }> = {
-  small: { width: '150', height: '110' },
-  large: { width: '260', height: '200' },
+const imgSize: Record<ImageSize, { width: number; height: number }> = {
+  small: { width: 150, height: 110 },
+  large: { width: 260, height: 200 },
 };
 
 type CardProps = {
@@ -72,7 +72,7 @@ function Card({ offer, cardPageType, onCardHover, size = 'large' }: CardProps) {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: setRatingWidth(offer.rating) }}></span>
+            <span style={{ width: getRatingWidth(offer.rating) }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

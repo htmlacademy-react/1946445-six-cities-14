@@ -13,7 +13,7 @@ type MainProps = {
 
 function MainPage({ offers }: MainProps) {
   const [activeCity, setActiveCity] = useState<OfferCity['name']>('Amsterdam');
-  const locationActiveCity = offers.find(({ city }) => city.name === activeCity)
+  const locationActiveCity = offers.find(({ city }) => city.name === activeCity || city.name === 'Amsterdam')
     ?.city as OfferCity;
   function handleCityClick(city: OfferCity['name']) {
     setActiveCity(city);

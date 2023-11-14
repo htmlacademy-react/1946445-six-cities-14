@@ -1,4 +1,4 @@
-function setRatingWidth(rating: number): string {
+function getRatingWidth(rating: number): string {
   const maxStars = 5;
   return `${(rating * 100) / maxStars}%`;
 }
@@ -10,4 +10,4 @@ function formatDate(date: string) {
   }).format(new Date(date));
 }
 
-export { setRatingWidth, formatDate };
+export { getRatingWidth, formatDate };

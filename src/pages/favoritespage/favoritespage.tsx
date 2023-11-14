@@ -13,7 +13,7 @@ function Favorites({ offers }: FavoritesProps) {
   const favoriteCity = new Set<OfferCity['name']>();
   const favoriteOffers = offers
     .filter((offer) => offer.isFavorite)
-    .sort((a, b) => (a.city.name > b.city.name ? 1 : -1));
+    .sort((a, b) => (a.city.name.compareLocale(b.city.name)));
   favoriteOffers.map(({city}) => favoriteCity.add(city.name));
   return (
     <div className="page">
@@ -40,6 +40,7 @@ function Favorites({ offers }: FavoritesProps) {
                       if(offer.city.name === city) {
                         return <Card key={offer.id} offer={offer} cardPageType='favorites' size='small' />;
                       }
+                      return null;
                     })}
                   </div>
                 </li>

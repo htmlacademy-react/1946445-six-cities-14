@@ -1,5 +1,5 @@
 import { Reviews } from '../../types/reviews';
-import { setRatingWidth, formatDate } from '../../utils/utils';
+import { getRatingWidth, formatDate } from '../../utils/utils';
 
 type ReviewProps = {
   review: Reviews;
@@ -23,7 +23,7 @@ function Review({ review }: ReviewProps): JSX.Element {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{ width: setRatingWidth(review.rating) }}></span>
+            <span style={{ width: getRatingWidth(review.rating) }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

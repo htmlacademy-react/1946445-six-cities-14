@@ -5,7 +5,7 @@ import { Offers, OfferCity } from '../../types/offers';
 import { Reviews } from '../../types/reviews';
 import NotFound from '../not-found/not-found';
 import { Header } from '../../components/header/header';
-import { setRatingWidth } from '../../utils/utils';
+import { getRatingWidth } from '../../utils/utils';
 import Map from '../../components/map/map';
 import { ReviewsList } from '../../components/reviews-list/reviews-list';
 import { OffersList } from '../../components/offers-list/offers-list';
@@ -82,7 +82,7 @@ function Offer({ offers, reviews }: OfferProps) {
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{ width: setRatingWidth(rating) }}></span>
+                  <span style={{ width: getRatingWidth(rating) }}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="offer__rating-value rating__value">
