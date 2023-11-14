@@ -1,13 +1,20 @@
 import { Helmet } from 'react-helmet-async';
-import { Offers } from '../../types/offers';
+import {Link} from 'react-router-dom';
+import { Offers, OfferCity } from '../../types/offers';
 import { Card } from '../../components/card/card';
-import {Header} from '../../components/header/header';
+import { Header } from '../../components/header/header';
+import { AppRoute } from '../../utils/consts';
 
 type FavoritesProps = {
   offers: Offers[];
 };
 
 function Favorites({ offers }: FavoritesProps) {
+  const favoriteCity = new Set<OfferCity['name']>();
+  const favoriteOffers = offers
+    .filter((offer) => offer.isFavorite)
+    .sort((a, b) => (a.city.name.localeCompare(b.city.name)));
+  favoriteOffers.map(({city}) => favoriteCity.add(city.name));
   return (
     <div className="page">
       <Helmet>
@@ -19,49 +26,31 @@ function Favorites({ offers }: FavoritesProps) {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="#">
-                      <span>Amsterdam</span>
-                    </a>
+              {Array.from(favoriteCity).map((city) => (
+                <li key={city} className="favorites__locations-items">
+                  <div className="favorites__locations locations locations--current">
+                    <div className="locations__item">
+                      <a className="locations__item-link" href="#">
+                        <span>{city}</span>
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <div className="favorites__places">
-                  {offers.map((offer) => (
-                    <Card
-                      cardPageType="favoritePage"
-                      offer={offer}
-                      key={offer.id}
-                    />
-                  ))}
-                </div>
-              </li>
-
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="#">
-                      <span>Cologne</span>
-                    </a>
+                  <div className="favorites__places">
+                    {favoriteOffers.map((offer) => {
+                      if(offer.city.name === city) {
+                        return <Card key={offer.id} offer={offer} cardPageType='favorites' size='small' />;
+                      }
+                      return null;
+                    })}
                   </div>
-                </div>
-                <div className="favorites__places">
-                  {offers.map((offer) => (
-                    <Card
-                      cardPageType="favoritePage"
-                      offer={offer}
-                      key={offer.id}
-                    />
-                  ))}
-                </div>
-              </li>
+                </li>
+              ))}
             </ul>
           </section>
         </div>
       </main>
       <footer className="footer container">
-        <a className="footer__logo-link" href="main.html">
+        <Link className="footer__logo-link" to={AppRoute.Main}>
           <img
             className="footer__logo"
             src="img/logo.svg"
@@ -69,7 +58,7 @@ function Favorites({ offers }: FavoritesProps) {
             width="64"
             height="33"
           />
-        </a>
+        </Link>
       </footer>
     </div>
   );
