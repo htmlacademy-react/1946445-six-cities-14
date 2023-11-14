@@ -13,7 +13,7 @@ function Favorites({ offers }: FavoritesProps) {
   const favoriteCity = new Set<OfferCity['name']>();
   const favoriteOffers = offers
     .filter((offer) => offer.isFavorite)
-    .sort((a, b) => (a.city.name.compareLocale(b.city.name)));
+    .sort((a, b) => (a.city.name.localeCompare(b.city.name)));
   favoriteOffers.map(({city}) => favoriteCity.add(city.name));
   return (
     <div className="page">
